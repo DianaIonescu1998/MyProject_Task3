@@ -3,7 +3,7 @@ pipeline {
 	stages {
 		stage('Stage 1'){
 			steps {
-				sh 'mvn package'
+				echo 'first hello!'
 				}
 		}
 		stage('Stage 2'){
