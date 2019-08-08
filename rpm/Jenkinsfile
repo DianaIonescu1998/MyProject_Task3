@@ -1,0 +1,31 @@
+pipeline {
+	agent any
+	stages {
+		stage('Stage 1'){
+			steps {
+				sh 'mvn package'
+				}
+		}
+		stage('Stage 2'){
+			steps {
+				echo 'Hello!'		
+			}
+		}
+		
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
