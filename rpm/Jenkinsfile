@@ -1,5 +1,9 @@
 pipeline {
 	agent any
+	environment{
+		PATH = "/sbin:/usr/sbin:/bin:/usr/bin:/opt/apache-maven-3.6.1/bin"
+		M2_HOME = "/opt/apache-maven-3.6.1"
+	}
 	stages {
 		stage('Stage 1'){
 			steps {
