@@ -5,24 +5,33 @@ pipeline {
 		M2_HOME = "/usr/local/src/apache-maven"
 	}
 	stages {
-		stage('Stage 1'){
+		stage('Clean'){
 			steps {
-				echo 'Hello!'
+				echo 'Clean'
 				sh 'mvn clean'	
 			}
 		}
-		stage('Stage 2'){
+		stage('Test'){
 			steps {
-				echo 'I am...'
-				sh 'mvn package'	
+				echo 'Test'
+				sh 'mvn test'	
 			}
 		}
-		stage('Stage 3'){
+		stage('Package'){
 			steps {
-				echo 'I am testing..'
-				sh 'mvn test'
+				echo 'Package'
+				sh 'mvn package'
 			}
 		}
+		stage('Deploy'){
+			steps {
+				echo "Deploy"
+				sh 'ssh root@192.168.33.11 "rpm -e  unixutils-test-rpm-1.0.0-1.0.0.noarch.rpm" '
+				sh 'scp root@192.168.33.12:/Task3/rpm/target/rpm/unixutils-test-rpm/RPMS/noarch/unixutils-test-rpm-1.0.0-1.0.0.noarch.rpm ~/ '
+				sh 'rpm -ivh unixutils-test-rpm-1.0.0-1.0.0.noarch.rpm' 
+			}
+		}
+		
 		
 	}
 }
