@@ -26,7 +26,7 @@ pipeline {
 		stage('Deploy'){
 			steps {
 				echo "Deploy"
-				sh 'ssh root@192.168.33.11 "'scp root@192.168.33.12:/Task3/rpm/target/rpm/unixutils-test-rpm/RPMS/noarch/unixutils-test-rpm-1.0.0-1.0.0.noarch ~/ ; rpm -e  unixutils-test-rpm-1.0.0-1.0.0.noarch" '
+				sh 'ssh root@192.168.33.11 "scp root@192.168.33.12:${WORKSPACE}/rpm/target/rpm/unixutils-test-rpm/RPMS/noarch/unixutils-test-rpm-1.0.0-1.0.0.noarch ~/ ; rpm -e  unixutils-test-rpm-1.0.0-1.0.0.noarch" '
 				sh 'rpm -ivh unixutils-test-rpm-1.0.0-1.0.0.noarch'
 			}
 		}
